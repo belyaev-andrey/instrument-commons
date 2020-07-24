@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://instrumentBrowse.caption"
+        focusComponent="instrumentsTable"
+        messagesPack="com.eth.proposals.web.screens.instrument">
+    <data readOnly="true">
+        <collection id="instrumentsDc"
+                    class="com.eth.proposals.entity.Instrument">
+            <view extends="_local"/>
+            <loader id="instrumentsDl">
+                <query>
+                    <![CDATA[select e from proposals_Instrument e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="instrumentsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="instrumentsTable"
+                dataLoader="instrumentsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="instrumentsTable"
+                    width="100%"
+                    dataContainer="instrumentsDc">
+            <columns>
+                <column id="name"/>
+            </columns>
+            <rowsCount/>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

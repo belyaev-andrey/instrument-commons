@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://proposalEdit.caption"
+        focusComponent="form"
+        messagesPack="com.eth.proposals.web.screens.proposal">
+    <data>
+        <instance id="proposalDc"
+                  class="com.eth.proposals.entity.Proposal">
+            <view extends="_local">
+                <property name="instrument" view="_minimal"/>
+                <property name="applicant" view="_minimal"/>
+                <property name="delegate" view="_minimal"/>
+            </view>
+            <loader/>
+        </instance>
+        <collection id="instrumentsDc" class="com.eth.proposals.entity.Instrument" view="_minimal">
+            <loader id="instrumentsDl">
+                <query>
+                    <![CDATA[select e from proposals_Instrument e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="applicantsDc" class="com.haulmont.cuba.security.entity.User" view="_minimal">
+            <loader id="applicantsDl">
+                <query>
+                    <![CDATA[select e from sec$User e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="delegatesDc" class="com.haulmont.cuba.security.entity.User" view="_minimal">
+            <loader id="delegatesDl">
+                <query>
+                    <![CDATA[select e from sec$User e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="responsiblesDc" class="com.haulmont.cuba.security.entity.Role" view="_minimal">
+            <loader id="responsiblesDl">
+                <query>
+                    <![CDATA[select e from sec$Role e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="proposalDc">
+            <column width="350px">
+                <lookupPickerField id="instrumentField" optionsContainer="instrumentsDc" property="instrument"/>
+                <textField id="projectTitleField" property="projectTitle"/>
+                <lookupPickerField id="applicantField" optionsContainer="applicantsDc" property="applicant"/>
+                <lookupPickerField id="delegateField" optionsContainer="delegatesDc" property="delegate"/>
+                <lookupField id="proposalStatusField" property="proposalStatus"/>
+                <dateField id="dueDateField" property="dueDate"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

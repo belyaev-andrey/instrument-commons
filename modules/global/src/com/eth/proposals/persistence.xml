@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="proposals" transaction-type="RESOURCE_LOCAL">
+
+        <class>com.eth.proposals.entity.Instrument</class>
+        <class>com.eth.proposals.entity.Proposal</class>
+    </persistence-unit>
+</persistence>

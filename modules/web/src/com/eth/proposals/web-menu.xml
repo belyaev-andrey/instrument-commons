@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-proposals" insertBefore="administration">
+        <item screen="proposals_Instrument.browse" caption="mainMsg://menu_config.proposals_Instrument.browse"/>
+        <item screen="proposals_Proposal.browse" caption="mainMsg://menu_config.proposals_Proposal.browse"/>
+    </menu>
+</menu-config>
